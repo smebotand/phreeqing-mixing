@@ -1,3 +1,5 @@
+.hr {border-top: 1px solid #000000;}
+
 .small-box {
   border-radius: 1vh !important;
   box-shadow: 0.3vh 0.3vh 0vh #CCCCCC;
@@ -88,7 +90,7 @@
   padding-right: 3px;
   padding-bottom: 3px;
   padding-left: 10px;
-  font-weight: bold;  
+  font-weight: bold;
 }
 .shiny-input-container > label {margin-bottom: 0px;}
 
@@ -121,12 +123,12 @@
         .skin-blue .main-header .logo {
         background-color: #464646;
         }
-        
+
         /* logo when hovered */
         .skin-blue .main-header .logo:hover {
         background-color: #464646;
         }
-        
+
         /* navbar (rest of the header) */
         .skin-blue .main-header .navbar {
         background-color: #464646;
@@ -141,8 +143,8 @@
                               background-color: #464646;
                               margin:0PX;
                               }
-                       
-                       
+
+
                        .sidebar-title {
     margin: 10px;
     text-align: center;
@@ -155,7 +157,7 @@
     color: white;
     border-radius: 10px;
 }
-  
+
 .btn-success, .btn-success:active, .btn-success:focus,.btn-success.focus {
     font-size: 15px;
     font-family: inherit;
@@ -240,7 +242,7 @@
 /* logo */
 
 .logo {
-  padding: 0 0px; 
+  padding: 0 0px;
 }
 
 .skin-blue .main-header .logo {

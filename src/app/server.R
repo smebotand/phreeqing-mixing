@@ -52,7 +52,7 @@ server = function(input, output, session) {
   observeEvent(inputSolutions(),{
     inputValues$sol1 = inputSolutions()[,"Solution 1"]
     inputValues$sol2 = inputSolutions()[,"Solution 2"]
-  }, label = "OEinputSol1Reset")
+  }, label = "OEinputSolutions")
 
 
   #updating tables back-end if changes are made through gui

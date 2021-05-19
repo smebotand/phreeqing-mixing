@@ -42,7 +42,7 @@ ui = dashboardPage(
     ##### BODY: TITLE #####
 
     div(h3(em(strong("Phreeq(ing)Mixing: Chemical Speciation Modeling!"))),align = "center"),
-    br(),
+    hr(style = "border-top: 1px solid #000000;"),
 
 
     ##### BODY: INPUTS #####
@@ -74,7 +74,7 @@ ui = dashboardPage(
     br(),
     div(materialSwitch("hideInputs", strong("Hide Inputs"), value = FALSE, status = "success"),
         style = "padding-left: 100px;"),
-    hr(),
+    hr(style = "border-top: 1px solid #000000;"),
 
 
     ##### BODY: RESULTS #####
@@ -94,7 +94,7 @@ ui = dashboardPage(
     conditionalPanel(condition = "input.showRawDataTable",
                      dataTableOutput("resultsTable")),
     br(),
-    hr(),
+    hr(style = "border-top: 1px solid #000000;"),
 
 
     ##### BODY: FOOTER #####

@@ -11,21 +11,14 @@ import(ggplot2)
 
 ##### Defining functions #####
 
-
-#### INPUT ####
-
-
-#### Database selection ####
-#phrLoadDatabaseString(minteq.v4.dat)
-#writeLines(minteq.v4.dat)
-
-
 runModel = function(sol1,
                     chrg.sol1,
                     sol2,
                     chrg.sol2){
 
+  #defining database
 
+  phrLoadDatabase("database/minteq.v4.dat")
 
   #### SOLUTION 1 ####
   sol1.name <- "SOLUTION 1"

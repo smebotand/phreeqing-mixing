@@ -1,0 +1,12 @@
+name: phreeqingMixing
+title: phreeqingMixing
+username:
+account: miljongi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4150736
+bundleId: 4614746
+url: https://miljongi.shinyapps.io/phreeqingMixing/
+when: 1621409839.60439
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,4 +1,5 @@
-#Loading packages
+##### Loading packages #####
+
 library(shiny)
 library(DT)
 library(shinydashboard)
@@ -8,17 +9,33 @@ library(plotly)
 library(purrr)
 library(dplyr)
 library(magrittr)
+library(tidyverse)
 library(tibble)
 library(tidyr)
 library(phreeqc)
 library(shinyWidgets)
+library(naniar)
+library(stats)
+library(ggplot2)
 
-#options(shiny.error = browser)#type e to see failed code
-#options(shiny.error = NULL)#type e to see failed code
+cat(file = stderr(), "Done loading packages\n")
+
+##### Debugging #####
+
+options(shiny.error = browser)
+#call "e" in browser to see failed code line
+
+library(reactlog)
+options(shiny.reactlog=T)
+#press ctrl + F3 to launch log after you start app
+
+#options(shiny.trace = TRUE)
+#options(shiny.fullstacktrace = TRUE)
 
 
-#Loading module to run chemical modell
-phrLoadDatabaseString(minteq.v4.dat)
+##### Loading module to run chemical model #####
+
+cat(file = stderr(), "Done loading database\n")
 
 phreeqc = use("modules/phreeqc.R")
 
