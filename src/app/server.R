@@ -1,6 +1,7 @@
 
 server = function(input, output, session) {
 
+
   ###### Defining Input table #####
 
   inputValues = reactiveValues()
@@ -68,7 +69,6 @@ server = function(input, output, session) {
     } else if (editedValue$col == 2){
       editsSol2[editedValue$row] = editedValue$value
       inputValues$sol2 = editsSol2
-
     }
 
   }, label = "OEtableInputSolutions_cell_edit")
@@ -76,19 +76,21 @@ server = function(input, output, session) {
 
   # Hiding Inputs When Model has been run!
   observeEvent(input$runModel, {
+
     updateSwitchInput(
       session = session,
       inputId = "hideInputs",
-      value = TRUE
-    )
-  }, ignoreInit = TRUE)
+      value = TRUE)
+  },
+  ignoreInit = TRUE,
+  label = "OErunModel")
 
 
   ##### running modell #####
 
   resultValues = reactiveValues()
 
-  resultsModel = observeEvent(input$runModel,{
+  observeEvent(input$runModel,{
 
     resultModel = phreeqc$runModel(sol1 = inputValues$sol1,
                                    chrg.sol1 = input$chrgSol1,
@@ -98,7 +100,9 @@ server = function(input, output, session) {
     resultValues$elements = resultModel$elements
     resultValues$species = resultModel$species
     resultValues$phases = resultModel$phases
-  })
+  },
+  label = "OEresultsModel")
+
 
   ##### Rendering selection options based on results #####
 
@@ -126,7 +130,7 @@ server = function(input, output, session) {
     names(availableSpecies) = availableSpecies
 
     return(availableSpecies)
-  })
+  }, label = "RavailableSpecies")
 
 
   availablePhases = reactive({
@@ -142,7 +146,7 @@ server = function(input, output, session) {
     names(availablePhases) = availablePhases
 
     return(availablePhases)
-  })
+  }, label = "RavailablePhases")
 
 
   output$selectSpecies = renderUI({
@@ -184,7 +188,7 @@ server = function(input, output, session) {
                Phase %in% input$selPhases)
     }
     return(selectedData)
-  })
+  }, label = "RselectedData")
 
 
   output$resultsPlot = renderPlotly({

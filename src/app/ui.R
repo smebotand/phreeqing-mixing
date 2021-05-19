@@ -4,16 +4,22 @@ ui = dashboardPage(
   title = "Phreeq(ing)Mixing",
 
 
+  ##### HEADER #####
+
   dashboardHeader(
     title = span(img(src = "MiljoData.png", height = 40)),
     titleWidth = 300,
-    #tags$li(class = "dropdown", actionLink("runIntro", "Help", class = "my_class"),icon=icon("question")),
-    tags$li(#a(href = 'http://www.ngi.no',
-              img(src = "ngiLogo.jpg", height = "50vh"),#),
+    tags$li(img(src = "ngiLogo.jpg", height = "50vh"),#),
       class = "dropdown")
   ),
 
+
+  ##### SIDEBAR #####
+
   dashboardSidebar(disable=T),
+
+
+  ##### BODY #####
 
   dashboardBody(
 
@@ -31,27 +37,26 @@ ui = dashboardPage(
     tags$head(
       tags$link(rel = "icon", type = "image/png", sizes = "32x32", href = "favicon-32x32.png")
     ),
-    introjsUI(),
-    shinyjs::useShinyjs(),
 
 
-    ##### Constructing Body #####
+    ##### BODY: TITLE #####
 
     div(h3(em(strong("Phreeq(ing)Mixing: Chemical Speciation Modeling!"))),align = "center"),
     br(),
 
-    ##### INPUTS #####
+
+    ##### BODY: INPUTS #####
 
     conditionalPanel(condition = "!input.hideInputs",
                      tagList(div(h3(strong("Define Your Solution")),align = "center"),
                              splitLayout(cellWidths = c("50%", "50%"),
 
-                                         #left side of GUI
+                                         #left side of INPUTS
                                          div(h5(em(strong("Parameter Values for Solutions"))),
                                              dataTableOutput("tableInputSolutions", width = "80%"),
                                                  align = "center"),
 
-                                         #right side of GUI
+                                         #right side of INPUTS
                                          div(h5(em(strong("Additional Parameters"))),
                                              br(),
                                               selectInput("chrgSol1","Charge Balance Parameter  Solution 1",
@@ -72,7 +77,7 @@ ui = dashboardPage(
     hr(),
 
 
-    ##### RESULTS #####
+    ##### BODY: RESULTS #####
 
     div(h3(strong("Plot Your Results")),align = "center"),
     fixedRow(column(3,uiOutput("selectElements")),
@@ -90,6 +95,10 @@ ui = dashboardPage(
                      dataTableOutput("resultsTable")),
     br(),
     hr(),
+
+
+    ##### BODY: FOOTER #####
+
     div(column(12,em("NGI is not liable for any damages arising in contract, tort or otherwise from the use of or inability to use this site or any material contained in it, or from any action or decision taken as a result of using the site. This site neither stores nor collects personal information."),
                align = "center")),
     br(),br()
