@@ -17,6 +17,7 @@ library(shinyWidgets)
 library(naniar)
 library(stats)
 library(ggplot2)
+library(shinycssloaders)
 
 cat(file = stderr(), "Done loading packages\n")
 
@@ -28,7 +29,6 @@ options(shiny.error = browser)
 library(reactlog)
 options(shiny.reactlog=T)
 #press ctrl + F3 to launch log after you start app
-
 #options(shiny.trace = TRUE)
 #options(shiny.fullstacktrace = TRUE)
 

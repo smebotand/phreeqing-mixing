@@ -88,7 +88,13 @@ server = function(input, output, session) {
 
   ##### running modell #####
 
-  resultValues = reactiveValues()
+  resultValues = reactiveValues(statusModel = "preparing")
+
+  output$statusModel = renderUI({
+    input$runModel
+    if(resultValues$statusModel == "preparing") img(src = "preparing.PNG")
+    else if(resultValues$statusModel == "finish") img(src = "finish.PNG")
+  })
 
   observeEvent(input$runModel,{
 
@@ -100,9 +106,9 @@ server = function(input, output, session) {
     resultValues$elements = resultModel$elements
     resultValues$species = resultModel$species
     resultValues$phases = resultModel$phases
+    resultValues$statusModel = "finish"
   },
   label = "OEresultsModel")
-
 
   ##### Rendering selection options based on results #####
 
@@ -155,6 +161,7 @@ server = function(input, output, session) {
 
     selectInput("selSpecies","Select Species to Plot",
                 choices = availableSpecies(),
+                selected = availableSpecies()[1],
                 multiple = T)
   })
 
@@ -165,6 +172,7 @@ server = function(input, output, session) {
 
     selectInput("selPhases","Select Phases to Plot",
                 choices = availablePhases(),
+                selected = availablePhases()[1],
                 multiple = T)
   })
 
@@ -195,17 +203,33 @@ server = function(input, output, session) {
 
     if(is.null(selectedData())) return()
 
-    if(input$selecteXaxis == "Mixing Ratio") xaxis = "sol2_frac" else xaxis = "pH"
-    if(input$selecteDataType == "Phases") yaxis = "SI" else yaxis = "Molality"
-    if(input$selecteDataType == "Phases") color = "Phase" else color = "Species"
+    #defining plotting parameters based on user inputs
+    if(input$selecteXaxis == "Mixing Ratio") {
+      xaxis = "sol2_frac"
+      xaxisTitle = "Solution 2 (%)"
+      xaxisMultiple = 100
+    } else {
+      xaxis = "pH"
+      xaxisTitle = "pH"
+      xaxisMultiple = 1
+    }
 
+    if(input$selecteDataType == "Phases") {
+      yaxis = "SI"
+      color = "Phase" }
+    else if(input$selecteDataType == "Species"){
+      yaxis = "Molality"
+      color = "Species"
+    }
+
+    #plotting
     plot_ly() %>%
-      add_trace(x = unlist(selectedData()[,xaxis]),
+      add_trace(x = unlist(selectedData()[,xaxis])*xaxisMultiple,
                 y = unlist(selectedData()[,yaxis]),
                 color = unlist(selectedData()[,color]),
                 type = "scatter",
                 mode = "markers+lines") %>%
-      layout(xaxis = list(title = input$selecteXaxis),
+      layout(xaxis = list(title = xaxisTitle),
              yaxis = list(title = yaxis))
   })
 

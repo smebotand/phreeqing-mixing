@@ -10,7 +10,7 @@ ui = dashboardPage(
     title = span(img(src = "MiljoData.png", height = 40)),
     titleWidth = 300,
     tags$li(img(src = "ngiLogo.jpg", height = "50vh"),#),
-      class = "dropdown")
+            class = "dropdown")
   ),
 
 
@@ -52,23 +52,43 @@ ui = dashboardPage(
                              splitLayout(cellWidths = c("50%", "50%"),
 
                                          #left side of INPUTS
-                                         div(h5(em(strong("Parameter Values for Solutions"))),
+                                         div(h4(em(strong("Parameter Values for Solutions"))),
                                              dataTableOutput("tableInputSolutions", width = "80%"),
-                                                 align = "center"),
+                                             align = "center"),
 
                                          #right side of INPUTS
-                                         div(h5(em(strong("Additional Parameters"))),
+                                         div(h4(em(strong("Additional Parameters"))),
                                              br(),
-                                              selectInput("chrgSol1","Charge Balance Parameter  Solution 1",
+
+                                             selectInput("chrgSol1", "Charge Balance Parameter  Solution 1",
                                                          c("Cl","Na")),
+
                                              br(),
-                                             selectInput("chrgSol2","Charge Balance Parameter Solution 2",
+
+                                             selectInput("chrgSol2", "Charge Balance Parameter Solution 2",
                                                          c("Na","Cl")),
-                                             br(),br(),br(),br(),br(),br(),
-                                             div(actionButton("runModel", "Run Model",icon = icon("thumbs-up")),
+
+                                             br(),br(),br(),
+                                             #div(
+                                               h4(em(strong("Status"))),
+
+                                                 withSpinner(
+                                                   uiOutput("statusModel"),
+                                                   type = 4,
+                                                   color = "#d33724",
+                                                   size = 0.7,
+                                                   image = "https://ngienvitechprodstorage.blob.core.windows.net/openstorage/mixing.gif?sv=2019-12-12&st=2021-05-19T17%3A30%3A50Z&se=2100-05-20T17%3A30%3A00Z&sr=b&sp=r&sig=z8Dn2WNqdO6%2BDPX5hOMeXsG1B37QSq%2BIrrRP034BsH4%3D",
+                                                   proxy.height = 189),
+
                                                  br(),
+
+                                                 actionButton("runModel", "Run Model",icon = icon("thumbs-up")),
+
+                                                 br(),
+
                                                  actionButton("resetSolutions", "Reset to Default Values",icon = icon("undo")),
-                                                 style = "max-width: 300px;"),
+
+                                              #   style = "max-width: 300px;"),
                                              align = "center",
                                              style = "padding-left: 15px;")))),
     br(),
